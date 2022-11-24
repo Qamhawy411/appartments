@@ -18,11 +18,14 @@ class FieldModel {
   final FieldType? fieldType;
   bool? enabled;
   final Key? key;
+  Function(String)? sub =(p0) {
+    
+  };
 
   FieldModel({
     this.labelTxt = '', this.hintTxt = '', this.icon, this.type, this.controller,
     this.isSecure = false, this.fieldType = FieldType.text,
-    this.enabled = true, this.key
+    this.enabled = true, this.key,this.sub
   });
 }
 
@@ -75,6 +78,7 @@ class _CustomFieldState extends State<CustomField> {
         controller: widget.model.controller,
         obscureText: widget.model.isSecure!,
         enabled: widget.model.enabled,
+        onFieldSubmitted: widget.model.sub,
       ),
     );
   }
