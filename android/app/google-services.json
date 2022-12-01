@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "731264663073",
+    "firebase_url": "https://appartments-85947-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "appartments-85947",
+    "storage_bucket": "appartments-85947.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731264663073:android:ffd1f04893551169546d60",
+        "android_client_info": {
+          "package_name": "com.example.appartments"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731264663073-lqhq9giq8uv43n6ejrja2relsace75vu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appartments",
+            "certificate_hash": "6c39030e0e9855ce642af73adfb30c2e0096a6f6"
+          }
+        },
+        {
+          "client_id": "731264663073-2p71dkemf0452v73cmu2hajqck8j3ai8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzjtSr9Evcyd3NU-skc3EqZR1tUrdoqnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731264663073-2p71dkemf0452v73cmu2hajqck8j3ai8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

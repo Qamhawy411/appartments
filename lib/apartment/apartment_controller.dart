@@ -1,38 +1,11 @@
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapController{
-  LatLng _lating =LatLng(30.033333, 31.233334);
-  get getlating=> _lating;
- Future<void> getUserLocation()async{
-    bool isdone=  await mapStatus();
-
-    if (isdone){
-      Position currentPosition = await Geolocator.getCurrentPosition();
-   _lating= LatLng(currentPosition.altitude, currentPosition.longitude);
-    }
- 
-
-  }
+import 'package:http/http.dart' as htttp;
 
 
- Future<bool> mapStatus()async{
-        LocationPermission permission= await Geolocator.checkPermission();
-    if(permission==LocationPermission.denied){
-      permission=  await   Geolocator.requestPermission();
-      if(permission==LocationPermission.denied){
-              return false;
-      }
-    }
-
- bool service=  await  Geolocator.isLocationServiceEnabled();
- if(!service){
-    return false;
- }
- return true;
-
-
-
-  }
-
+class ApartmentController{
+  String uri ="https://appartments-85947-default-rtdb.europe-west1.firebasedatabase.app";
+  getcategories()async{
+    htttp.Response response = await   htttp.get(Uri.parse("$uri/categorey.json"));
+    Map data =
+}
 }
