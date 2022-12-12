@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:appartments/apartment/apartment_views/search_result.dart';
 import 'package:appartments/shared/shared_theme/shared_colors.dart';
 import 'package:appartments/shared/shared_theme/shared_fonts.dart';
-import 'package:appartments/shared/shared_widget/apartement_hori_widget.dart';
-import 'package:appartments/shared/shared_widget/apartment_widget.dart';
+
 
 
 enum FieldType {email, password, text}

@@ -1,5 +1,7 @@
+import 'package:appartments/apartment/apartment_model.dart';
 import 'package:appartments/apartment/apartment_views/apartment_details.dart';
 import 'package:appartments/shared/shared_widget/fav_widget.dart';
+import 'package:appartments/shared/shared_widget/user_Controle.dart';
 import 'package:flutter/material.dart';
 import 'package:appartments/shared/shared_theme/shared_colors.dart';
 import 'package:appartments/shared/shared_theme/shared_fonts.dart';
@@ -8,18 +10,20 @@ import 'package:appartments/shared/shared_theme/shared_fonts.dart';
 
 class ApartmentWidget extends StatefulWidget {
   final bool isDetials;
-  const ApartmentWidget(this.isDetials, {super.key});
+  SpaceModel space;
+   ApartmentWidget(this.space,this.isDetials, {super.key});
 
   @override
   State<ApartmentWidget> createState() => _ApartmentWidgetState();
 }
 
 class _ApartmentWidgetState extends State<ApartmentWidget> {
+  
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.isDetials == false ? () {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => ApartementDetails()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => ApartementDetails(widget.space)));
       } : () {},
       child: Container(
         width: MediaQuery.of(context).size.width / 1.1,
@@ -36,25 +40,25 @@ class _ApartmentWidgetState extends State<ApartmentWidget> {
                         topRight: Radius.circular(20.0)),
                     image: DecorationImage(
                         image: NetworkImage(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmJJzQysBmY8_mHq70b4-_c6SUGh8uhwz8_w&usqp=CAU'),
+                            widget.space.spaceImgs[3]),
                         fit: BoxFit.fill)),
                 alignment: Alignment.topRight,
-                child: widget.isDetials == false ? FavWidget(30) : SizedBox() ),
+                child: widget.isDetials == false ? topWidget() : SizedBox() ),
             Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('  Duplex Home', style: SharedFonts.subBlackFont),
-                    Text('\$2000/month  ', style: SharedFonts.orangeFont)
+                    Text(widget.space.spaceName, style: SharedFonts.subBlackFont),
+                    Text('\$${widget.space.spacePrice}/${widget.space.rentType}  ', style: SharedFonts.orangeFont)
                   ],
                 ),
-                rowSection('Address', Icons.location_on),
+                rowSection('${widget.space.spaceLocation}', Icons.location_on),
                 Row(
                   children: [
-                    rowSection('Beds', Icons.bed),
-                    rowSection('Bathroom', Icons.bathroom),
-                    rowSection('220M', Icons.social_distance),
+                    rowSection('${widget.space.spaceBeds}Beds', Icons.bed),
+                    rowSection('${widget.space.spaceBathRoom}Bathroom', Icons.bathroom),
+                    rowSection('${widget.space.spaceArea}M', Icons.social_distance),
                   ],
                 ),
               ],
@@ -64,11 +68,16 @@ class _ApartmentWidgetState extends State<ApartmentWidget> {
       ),
     );
   }
+  Widget topWidget(){
+     if(widget.space.userId==1){
+      return UserControlle(widget.space, 20);
+     }else return FavWidget(widget.space, 30);
+  }
 }
 
 Padding rowSection(String title, IconData icon) {
   return Padding(
-    padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+    padding: const EdgeInsets.fromLTRB(3.0, 8.0, 3.0, 0.0),
     child: Row(
       children: [
         Icon(icon, color: SharedColors.greyColor, size: 12),

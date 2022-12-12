@@ -14,6 +14,7 @@ class MoreScreen extends StatefulWidget {
 
 class _MoreScreenState extends State<MoreScreen> {
   final List<Map<String, dynamic>> sections = [
+    {'title': 'My Appartment', 'icon': Icons.home, 'route': 'userAppartment'},
     {'title': 'Settings', 'icon': Icons.settings, 'route': 'setting'},
     {'title': 'About Us', 'icon': Icons.info, 'route': 'about'},
     {'title': 'Contact us', 'icon': Icons.email, 'route': 'contact'},

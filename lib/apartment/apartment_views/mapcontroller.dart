@@ -1,11 +1,16 @@
+import 'package:appartments/apartment/apartment_views/map_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapController{
+class MapController extends Cubit<MapStates>{
+  MapController():super (MapInitialStates());
   LatLng _userLating = LatLng (25.354826, 51.183884);
-  get getUserLatlng => _userLating;
+  LatLng get getUserLatlng => _userLating;
  Future<void>  userLocation()async{
+      
+
    bool availablePermission =  await permidssionAvailability();
 
    if (availablePermission){
@@ -35,7 +40,7 @@ Future<bool> permidssionAvailability()async{
        if(isDone){
    List<Location>  searchedLocatiojn  = await locationFromAddress(address);
    _userLating = LatLng(searchedLocatiojn[0].latitude, searchedLocatiojn[0].longitude);
-      print(_userLating);
+     
    }
 
 }}
