@@ -17,6 +17,11 @@ class AddAppartmentErorrState extends AppartmentStates{}
 
 
 
+class EditAppartmentgotDataState extends AppartmentStates{}
+class EditAppartmentErorrState extends AppartmentStates{}
+
+
+
 class DeleteIntialState extends AppartmentStates{}
 class DeleteGotState extends AppartmentStates{}
 class DeleteErorrState extends AppartmentStates{}

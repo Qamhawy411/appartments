@@ -19,6 +19,7 @@ class CategoryController extends Cubit<CategoryStates> {
   List<SpaceModel> get getFilterCategories => _filterCategories;
 
    Future <void> getcategories() async {
+    _categorey.clear();
     emit(CategoryLoadingState());
     try {
       htttp.Response response =
@@ -40,6 +41,7 @@ class CategoryController extends Cubit<CategoryStates> {
 
 
      void Filiter(CategoryModel category,List<SpaceModel>spaces){
+      _filterCategories.clear();
       emit(FilterCategoryLoadingState());
            for(SpaceModel space in spaces){
             if(space.categoryId==category.id){

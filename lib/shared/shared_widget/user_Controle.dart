@@ -1,5 +1,6 @@
 import 'package:appartments/apartment/apartment_controller.dart';
 import 'package:appartments/apartment/apartment_model.dart';
+import 'package:appartments/shared/editAppartment_screen.dart';
 import 'package:appartments/shared/shared_theme/shared_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +29,7 @@ class _UserControlleState extends State<UserControlle> {
         ),
         IconButton(
           onPressed: () {
-            
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> EditScreen(widget.space)));
           },
           icon: Icon(Icons.edit),
           color: SharedColors.orangeColor,

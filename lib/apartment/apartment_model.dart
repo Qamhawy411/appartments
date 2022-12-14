@@ -1,6 +1,8 @@
 
 
 
+import 'package:flutter/material.dart';
+
 class SpaceModel {
   int userId;
   String spaceId;
@@ -63,3 +65,29 @@ class SpaceModel {
          wishListId: ""
         );
   }}
+
+
+  class EditApartmentModel {
+  TextEditingController descriptionController;
+  TextEditingController addressController;
+  TextEditingController priceController;
+  TextEditingController nameController;
+  TextEditingController areaController;
+  TextEditingController bathController;
+  TextEditingController bedController;
+  String rentType;
+  String adType;
+  String selectedCategoryId;
+
+  EditApartmentModel(
+      {required this.descriptionController,
+      required this.addressController,
+      required this.priceController,
+      required this.nameController,
+      required this.areaController,
+      required this.bathController,
+      required this.bedController,
+      required this.rentType,
+      required this.adType,
+      required this.selectedCategoryId});
+}

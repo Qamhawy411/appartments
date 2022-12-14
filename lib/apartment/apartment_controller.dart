@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:appartments/apartment/apartment_model.dart';
 import 'package:appartments/apartment/appartment_states.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as htttp;
 
@@ -15,6 +16,7 @@ class ApartmentController extends Cubit<AppartmentStates> {
   List<SpaceModel> get getuserSpaces => _userSpaces;
   List<SpaceModel> _wishList = [];
   List<SpaceModel> get getwishList => _wishList;
+  EditApartmentModel? editApartmentModel;
   String uri =
       "https://appartments-85947-default-rtdb.europe-west1.firebasedatabase.app";
 
@@ -177,8 +179,56 @@ class ApartmentController extends Cubit<AppartmentStates> {
   
 
    }
+   
 
+   void prepareScreen(SpaceModel space){
+      editApartmentModel=EditApartmentModel(
+      descriptionController: TextEditingController(text: space.spaceDescription  ),
+      addressController:  TextEditingController(text: space.spaceLocation),
+      adType: space.adType,
+      areaController: TextEditingController(text: space.spaceArea.toString()),
+      bathController:  TextEditingController(text: space.spaceBathRoom.toString()),
+      bedController: TextEditingController(text: space.spaceBeds.toString()),
+      nameController: TextEditingController(text: space.spaceName),
+       priceController: TextEditingController(text: space.spacePrice.toString()),
+       rentType: space.rentType,
+       selectedCategoryId: space.categoryId
+    );
 
+   
+   }
+       
+       Future<void> updateApartment(SpaceModel space) async {
+    Map sendingData = {
+      'userId': space.userId,
+      'addType': space.adType,
+      'categoryId': space.categoryId,
+      'rentType': space.rentType,
+      'spaceArea': space.spaceArea,
+      'spaceBathRoom': space.spaceBathRoom,
+      'spaceBeds': space.spaceBeds,
+      'spaceDescription': space.spaceDescription,
+      'spaceImgs': space.spaceImgs,
+      'spaceLat': space.spaceLat,
+      'spaceLng': space.spaceLng,
+      'spaceLocation': space.spaceLocation,
+      'spaceName': space.spaceName,
+      'spacePrice': space.spacePrice,
+    };
+    try {
+      htttp.Response res = await htttp.put(
+          Uri.parse('$uri/spaces/${space.spaceId}.json'),
+          body: json.encode(sendingData));
+      if (res.statusCode == 200) {
+        emit(EditAppartmentgotDataState());
+      } else {
+        emit(EditAppartmentErorrState());
+      }
+    } catch (e) {
+      print(e);
+      emit(EditAppartmentErorrState());
+    }
+  }
     
 
 

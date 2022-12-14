@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         return RefreshIndicator (
           onRefresh: () async{
             BlocProvider.of<ApartmentController>(context).getSpaces();
-
+         BlocProvider.of<CategoryController>(context).getcategories();
           },
           backgroundColor: Colors.black,
           strokeWidth: 2 ,
